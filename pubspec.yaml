@@ -64,6 +64,22 @@ flutter:
     - images/lawBI.jpeg
     - images/law.jpg
     - images/justice-logo.png
+    - images/administrative.jpg
+    - images/civil.jpg
+    - images/contract.jpg
+    - images/corporate.jpg
+    - images/criminal.jpg
+    - images/employment.jpeg
+    - images/environmental.jpg
+    - images/family.jpeg
+    - images/health.jpg
+    - images/inmigration.jpg
+    - images/intelectual.jpg
+    - images/international.jpg
+    - images/realestate.jpeg
+    - images/tax.jpeg
+    
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

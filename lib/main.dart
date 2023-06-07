@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'image_data.dart';
 
 void main() => runApp(MyApp());
 
@@ -49,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     Screen1(),
     Screen2(),
-    Screen3(),
     Screen5(),
   ];
 
@@ -83,11 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Screen 2',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Screen 3',
-            activeIcon: Icon(Icons.favorite),
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
             label: 'News',
           ),
@@ -112,24 +107,34 @@ class Screen1 extends StatelessWidget {
               height: 150,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: images.length,
                 itemBuilder: (context, index) {
+                  final imageUrl = images[index]['url'];
+                  final imageTitle = images[index]['title'];
+                  final imageInfo = images[index]['info'];
+
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              ImageDetailScreen('Image ${index + 1}'),
+                              ImageDetailScreen(imageInfo, imageTitle),
                         ),
                       );
                     },
                     child: Container(
                       width: 150,
+                      height: 150, // Set the desired height for the image
                       margin: EdgeInsets.symmetric(horizontal: 8),
                       color: Colors.grey,
                       child: Center(
-                        child: Text('Image ${index + 1}'),
+                        child: Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
                       ),
                     ),
                   );
@@ -139,7 +144,7 @@ class Screen1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Information',
+                'Categories',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -149,7 +154,7 @@ class Screen1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'Select the topic you need for legal consulting.',
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
@@ -355,9 +360,10 @@ class Screen1 extends StatelessWidget {
 }
 
 class ImageDetailScreen extends StatelessWidget {
-  final String image;
+  final String info;
+  final String title;
 
-  ImageDetailScreen(this.image);
+  ImageDetailScreen(this.info, this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -365,10 +371,24 @@ class ImageDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Image Detail'),
       ),
-      body: Center(
-        child: Text(
-          'Selected Image: $image',
-          style: TextStyle(fontSize: 24, color: Colors.amber),
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            SizedBox(height: 16),
+            Text(
+              info,
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+          ],
         ),
       ),
     );
@@ -401,15 +421,6 @@ class Screen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text('Screen 2', style: TextStyle(color: Colors.amber)),
-    );
-  }
-}
-
-class Screen3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Screen 3', style: TextStyle(color: Colors.amber)),
     );
   }
 }
