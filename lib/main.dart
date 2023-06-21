@@ -373,20 +373,70 @@ class ImageDetailScreen extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
+        color: Colors.black, // Set the background color to black
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
               style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 16),
             Text(
               info,
               style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+            SizedBox(height: 100),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+              ),
+              value: null, // Set the initially selected value if desired
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+              ),
+              dropdownColor: Colors.white,
+              items: [
+                DropdownMenuItem(
+                  value: 'Option 1',
+                  child: Text(
+                    'Option 1',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: 'Option 2',
+                  child: Text(
+                    'Option 2',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: 'Option 3',
+                  child: Text(
+                    'Option 3',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ],
+              onChanged: (value) {
+                // Handle dropdown value change here
+              },
             ),
           ],
         ),
@@ -404,12 +454,30 @@ class NewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Screen'),
+        title: Text(text),
       ),
-      body: Center(
-        child: Text(
-          'Selected Icon: $text',
-          style: TextStyle(fontSize: 24, color: Colors.amber),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Selected Case: $text',
+              style: TextStyle(fontSize: 24, color: Colors.amber),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Case Information',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber),
+            ),
+            Text(
+              'Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eleifend leo, nec pellentesque nunc lobortis id. Sed ut mi nec sem scelerisque cursus eget vitae justo.',
+              style: TextStyle(fontSize: 16, color: Colors.amber),
+            ),
+          ],
         ),
       ),
     );
