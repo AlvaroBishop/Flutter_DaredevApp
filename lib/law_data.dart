@@ -5,11 +5,11 @@ List<Map<String, dynamic>> images = [
     'info':
         'Civil law deals with legal disputes between individuals or organizations, such as contract breaches, property disputes, or personal injury claims.',
     'questions': [
-      'What are the steps involved in filing a civil lawsuit?',
-      'How can I protect my rights in a contract dispute?',
-      'What is the statute of limitations for personal injury claims?',
-      'What are the legal requirements for establishing ownership of property?',
-      'What are the options for alternative dispute resolution in civil cases?'
+      'What are the steps filing a civil lawsuit?',
+      'How can I protect my rights in a contract?',
+      'What is the statute for personal injury claims?',
+      'What are the legal requirements for ownership of property?',
+      'What are the resolutions in civil cases?'
     ],
     'Option 1':
         'To file a civil lawsuit, you generally need to follow these steps:\n1. Consult with an attorney to assess the strength of your case and determine if litigation is the right option.\n2. Prepare the necessary documents, such as a complaint outlining the legal claims and facts of your case.\n3. File the complaint with the appropriate court and pay the filing fee.\n4. Serve the complaint and summons to the opposing party, officially notifying them of the lawsuit.\n5. Participate in the discovery process, where both parties gather evidence and exchange information.\n6. Attend any necessary hearings or pre-trial conferences.\n7. If a settlement is not reached, proceed to trial.\n8. After the trial, await the courts decision and, if successful, enforce the judgment.\nKeep in mind that specific procedures may vary depending on your jurisdiction and the nature of your case.',
@@ -29,9 +29,9 @@ List<Map<String, dynamic>> images = [
         'Criminal law focuses on crimes committed against society, such as murder, theft, or fraud. It involves prosecuting individuals accused of committing criminal acts and determining appropriate punishments.',
     'questions': [
       'What is the difference between a felony and a misdemeanor?',
-      'What are the constitutional rights of a person accused of a crime?',
+      'What are the rights of a person accused of a crime?',
       'What is the process of a criminal trial?',
-      'What factors are considered in determining a criminal sentence?',
+      'What factors are determining a criminal sentence?',
       'What are the possible defenses in a criminal case?'
     ],
     'Option 1':
@@ -51,11 +51,11 @@ List<Map<String, dynamic>> images = [
     'info':
         'Contract law governs the creation, interpretation, and enforcement of legal agreements between parties. It ensures that parties fulfill their obligations and provides remedies for breaches of contract.',
     'questions': [
-      'What elements are necessary for a contract to be legally binding?',
+      'What elements are necessary to be legally binding?',
       'What happens if one party breaches a contract?',
       'What are the different types of contracts?',
       'How can a contract be terminated?',
-      'What remedies are available for contract disputes?'
+      'What remedies are for contract disputes?'
     ],
     'Option 1':
         'For a contract to be legally binding, certain elements must be present:\n1. Offer: One party must make a clear and specific proposal to enter into an agreement.\n2. Acceptance: The other party must unconditionally agree to the terms of the offer.\n3. Consideration: There must be a bargained-for exchange of something of value between the parties.\n4. Legal capacity: Both parties must have the legal capacity to enter into a contract, meaning they must be of legal age and mentally competent.\n5. Mutual consent: There must be a meeting of the minds, indicating that both parties understand and agree to the essential terms of the contract.\n6. Legal purpose: The contracts purpose must not violate any laws or public policy.\nThese elements collectively establish the foundation for a valid and enforceable contract.',
@@ -97,8 +97,8 @@ List<Map<String, dynamic>> images = [
     'info':
         'Employment law regulates the relationship between employers and employees. It covers areas such as hiring practices, workplace safety, discrimination, wages, benefits, and termination.',
     'questions': [
-      'What are the basic rights of employees in the workplace?',
-      'What is the difference between an employee and an independent contractor?',
+      'What are the basic rights of employees ?',
+      'What is the difference between an employee and an independent?',
       'What is the minimum wage?',
       'What are the laws regarding workplace discrimination?',
       'What are the requirements for terminating an employee?'

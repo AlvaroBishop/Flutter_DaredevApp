@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'image_data.dart';
+import 'law_data.dart';
 
 void main() => runApp(MyApp());
 
@@ -79,10 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Screen 1',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Screen 2',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
             label: 'News',
           ),
@@ -109,17 +105,14 @@ class Screen1 extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: images.length,
                 itemBuilder: (context, index) {
-                  final imageUrl = images[index]['url'];
-                  final imageTitle = images[index]['title'];
-                  final imageInfo = images[index]['info'];
+                  final imageData = images[index];
 
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ImageDetailScreen(imageInfo, imageTitle),
+                          builder: (context) => ImageDetailScreen(imageData),
                         ),
                       );
                     },
@@ -130,7 +123,7 @@ class Screen1 extends StatelessWidget {
                       color: Colors.grey,
                       child: Center(
                         child: Image.asset(
-                          imageUrl,
+                          imageData['url'],
                           fit: BoxFit.cover,
                           width: double.infinity,
                           height: double.infinity,
@@ -360,10 +353,9 @@ class Screen1 extends StatelessWidget {
 }
 
 class ImageDetailScreen extends StatefulWidget {
-  final String info;
-  final String title;
+  final Map<String, dynamic> data;
 
-  ImageDetailScreen(this.info, this.title);
+  ImageDetailScreen(this.data);
 
   @override
   State<ImageDetailScreen> createState() => _ImageDetailScreenState();
@@ -378,95 +370,89 @@ class _ImageDetailScreenState extends State<ImageDetailScreen> {
       appBar: AppBar(
         title: Text('Image Detail'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(16.0),
-        color: Colors.black, // Set the background color to black
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              widget.info,
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-            SizedBox(height: 100),
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-              ),
-              value: 'Option 1', // Set the initially selected value if desired
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
-              dropdownColor: Colors.white,
-              items: [
-                DropdownMenuItem(
-                  value: 'Option 1',
-                  child: Text(
-                    'Option 1',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16.0),
+          color: Colors.black, // Set the background color to black
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.data['title'],
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                DropdownMenuItem(
-                  value: 'Option 2',
-                  child: Text(
-                    'Option 2',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                DropdownMenuItem(
-                  value: 'Option 3',
-                  child: Text(
-                    'Option 3',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-              onChanged: (value) {
-                setState(() {
-                  switch (value) {
-                    case 'Option 1':
-                      containerText = 'Option 1 selected';
-                      break;
-                    case 'Option 2':
-                      containerText = 'Option 2 selected';
-                      break;
-                    case 'Option 3':
-                      containerText = 'Option 3 selected';
-                      break;
-                    default:
-                      containerText = '';
-                  }
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            Container(
-              child: Text(
-                containerText,
+              ),
+              SizedBox(height: 16),
+              Text(
+                widget.data['info'],
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-            ),
-          ],
+              SizedBox(height: 40),
+              SizedBox(
+                height: 70, // Adjust the height as desired
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                  value: 'Option 1',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.black,
+                  ),
+                  dropdownColor: Colors.white,
+                  items: [
+                    for (var index = 0;
+                        index < widget.data['questions'].length;
+                        index++)
+                      DropdownMenuItem(
+                        value: 'Option ${index + 1}',
+                        child: Text(
+                          widget.data['questions'][index],
+                          style: TextStyle(
+                              fontSize: 9.6,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      switch (value) {
+                        case 'Option 1':
+                          containerText = widget.data[value];
+                          break;
+                        case 'Option 2':
+                          containerText = widget.data[value];
+                          break;
+                        case 'Option 3':
+                          containerText = widget.data[value];
+                          break;
+                        case 'Option 4':
+                          containerText = widget.data[value];
+                          break;
+                        case 'Option 5':
+                          containerText = widget.data[value];
+                          break;
+                        default:
+                          containerText = '';
+                      }
+                    });
+                  },
+                ),
+              ),
+              SizedBox(height: 16),
+              Container(
+                child: Text(
+                  containerText,
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
