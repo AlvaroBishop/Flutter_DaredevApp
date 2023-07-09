@@ -359,11 +359,18 @@ class Screen1 extends StatelessWidget {
   }
 }
 
-class ImageDetailScreen extends StatelessWidget {
+class ImageDetailScreen extends StatefulWidget {
   final String info;
   final String title;
 
   ImageDetailScreen(this.info, this.title);
+
+  @override
+  State<ImageDetailScreen> createState() => _ImageDetailScreenState();
+}
+
+class _ImageDetailScreenState extends State<ImageDetailScreen> {
+  String containerText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -378,7 +385,7 @@ class ImageDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              widget.title,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -387,7 +394,7 @@ class ImageDetailScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              info,
+              widget.info,
               style: TextStyle(fontSize: 18, color: Colors.white),
             ),
             SizedBox(height: 100),
@@ -396,7 +403,7 @@ class ImageDetailScreen extends StatelessWidget {
                 filled: true,
                 fillColor: Colors.white,
               ),
-              value: null, // Set the initially selected value if desired
+              value: 'Option 1', // Set the initially selected value if desired
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black,
@@ -435,8 +442,29 @@ class ImageDetailScreen extends StatelessWidget {
                 ),
               ],
               onChanged: (value) {
-                // Handle dropdown value change here
+                setState(() {
+                  switch (value) {
+                    case 'Option 1':
+                      containerText = 'Option 1 selected';
+                      break;
+                    case 'Option 2':
+                      containerText = 'Option 2 selected';
+                      break;
+                    case 'Option 3':
+                      containerText = 'Option 3 selected';
+                      break;
+                    default:
+                      containerText = '';
+                  }
+                });
               },
+            ),
+            SizedBox(height: 16),
+            Container(
+              child: Text(
+                containerText,
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
             ),
           ],
         ),
