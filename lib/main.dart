@@ -105,6 +105,23 @@ class MainScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Categories',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Select the topic you need for legal consulting.',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
             SizedBox(
               height: 150,
               child: ListView.builder(
@@ -143,11 +160,11 @@ class MainScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
-                'Categories',
+                'Common Cases',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: Colors.amber),
               ),
             ),
             const Padding(
@@ -176,7 +193,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.amber),
                       child: const Center(
                         child: Icon(Icons.favorite, size: 40),
                       ),
@@ -196,7 +213,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.white),
                       child: const Center(
                         child: Icon(Icons.wine_bar_outlined, size: 40),
                       ),
@@ -216,7 +233,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.amber),
                       child: const Center(
                         child: Icon(Icons.car_crash, size: 40),
                       ),
@@ -241,7 +258,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.white),
                       child: const Center(
                         child: Icon(Icons.accessible_outlined, size: 40),
                       ),
@@ -261,7 +278,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.white),
                       child: const Center(
                         child: Icon(Icons.account_balance, size: 40),
                       ),
@@ -286,13 +303,13 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.amber),
                       child: Center(
                         child: SizedBox(
                           width: 90,
                           height: 90,
                           child: CustomPaint(
-                            painter: DiamondPainter(),
+                            painter: DiamondPainter(Colors.amber),
                             child: const Center(
                               child: Icon(Icons.attach_money, size: 40),
                             ),
@@ -315,7 +332,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.white),
                       child: const Center(
                         child: Icon(Icons.wc, size: 40),
                       ),
@@ -335,7 +352,7 @@ class MainScreen extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: CustomPaint(
-                      painter: DiamondPainter(),
+                      painter: DiamondPainter(Colors.amber),
                       child: const Center(
                         child:
                             Icon(Icons.airplanemode_active_rounded, size: 40),
@@ -345,6 +362,9 @@ class MainScreen extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 30,
+            )
           ],
         ),
       ),
@@ -618,6 +638,9 @@ class NewsItem extends StatelessWidget {
 }
 
 class DiamondPainter extends CustomPainter {
+  final Color color;
+
+  DiamondPainter(this.color);
   @override
   void paint(Canvas canvas, Size size) {
     final path = Path();
@@ -628,7 +651,7 @@ class DiamondPainter extends CustomPainter {
     path.close();
 
     final paint = Paint()
-      ..color = Colors.amber
+      ..color = color
       ..style = PaintingStyle.fill;
 
     canvas.drawPath(path, paint);
